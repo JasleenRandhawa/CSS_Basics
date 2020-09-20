@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <title>Polaroid</title>
+  <LINK href="polaroid-style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <div class="polaroid">
+  <div class="button"></div>
+  <div class="flash"></div>
+  <div class="polaroid-body"></div>
+  <div class="blinker"></div>
+  <div class="zoom">
+    <div class="reflections"></div>
+  </div>
+  <div class="stripes"></div>
+</div>
+
+</body>
+</html>
