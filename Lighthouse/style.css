@@ -7,32 +7,36 @@ $aqua: #75e2fa;
 $grey: #9e9ebe;
 $yellow: #f7f2b4;
 
-html, body{
+html,
+body {
   height: 100%;
   width: 100%;
   overflow: hidden;
   padding: 0;
   margin: 0;
 }
-html{
+html {
   box-sizing: border-box;
 }
-*, *:before, *:after{
+*,
+*:before,
+*:after {
   box-sizing: inherit;
 }
-*{
+* {
   position: absolute;
 }
-*:after, *:before{
+*:after,
+*:before {
   content: "";
   position: absolute;
 }
 
-.scene{
+.scene {
   width: 100vw;
-  height: 100vh; //v for viewport 
+  height: 100vh; //v for viewport
 }
-.background{
+.background {
   background: $x-dark;
   background-image: linear-gradient(
     $x-dark 0%,
@@ -45,7 +49,7 @@ html{
   overflow: hidden;
   z-index: 1; //at the bottom
 }
-.sea{
+.sea {
   background: $x-dark;
   background-image: linear-gradient(
     to top,
@@ -61,22 +65,32 @@ html{
   z-index: 4;
 }
 
-.stars{
+.stars {
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 1;
-  .star{
+  
+  @keyframes twinkle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+  .star {
     border-radius: 50%;
     background-color: $light;
     animation: twinkle 5s ease-in-out infinite;
   }
 }
 
-@for $i from 1 through (60){
+@for $i from 1 through (60) {
   $size: random(4) + px;
-  .star:nth-of-type(#{$i}){
+  .star:nth-of-type(#{$i}) {
     top: random(100) + vh;
     left: random(100) + vw;
     width: $size;
@@ -84,7 +98,7 @@ html{
     animation-delay: random(5) + s;
   }
 }
-.moon{
+.moon {
   width: 80px;
   height: 80px;
   top: 25%;
@@ -92,14 +106,15 @@ html{
   border-radius: 50%;
   z-index: 2;
   background-color: $x-light;
-  box-shadow: 0 0 10px $x-light, 0 0 20px $x-light, 0 0 30px $x-light, 0 0 40px $x-light, 0 0 50px $aqua, 0 0 100px $x-light;
+  box-shadow: 0 0 10px $x-light, 0 0 20px $x-light, 0 0 30px $x-light,
+    0 0 40px $x-light, 0 0 50px $aqua, 0 0 100px $x-light;
 }
-.mountains{
+.mountains {
   width: 100%;
   height: 250px;
   bottom: 65px;
   z-index: 3;
-  .mountain{
+  .mountain {
     width: 250px;
     height: 250px;
     background-color: $medium;
@@ -107,48 +122,64 @@ html{
     bottom: -40px;
     transform: rotate(45deg);
     border-radius: 3px;
-    &:after{
+    &:after {
       width: 100%;
       height: 100%;
       opacity: 0.7;
-      background-image: linear-gradient(135deg, $dark 0%, $medium 20%, $aqua 40%);
+      background-image: linear-gradient(
+        135deg,
+        $dark 0%,
+        $medium 20%,
+        $aqua 40%
+      );
     }
   }
-  .mountain:nth-child(2)
-  {
+  .mountain:nth-child(2) {
     right: 220px;
     width: 240px;
     height: 240px;
     z-index: 2;
   }
-  .mountain:nth-child(3)
-  {
+  .mountain:nth-child(3) {
     right: 350px;
     width: 260px;
     height: 260px;
   }
-  .mountain:nth-child(4)
-  {
+  .mountain:nth-child(4) {
     right: 130px;
     width: 200px;
     height: 200px;
     z-index: 3;
     bottom: -70px;
-    &:after{
-      background-image: linear-gradient(135deg, $dark 0%, $medium 6%, $aqua 20%);
+    &:after {
+      background-image: linear-gradient(
+        135deg,
+        $dark 0%,
+        $medium 6%,
+        $aqua 20%
+      );
     }
   }
 }
-.wave{
+@keyframes wave {
+  0%,
+  100% {
+    transform: translatex(0);
+  }
+  50% {
+    transform: translatex(-10px);
+  }
+}
+.wave {
   background-color: $x-light;
   height: 3px;
   border-radius: 100%;
   opacity: 0.2;
   animation: wave 5s linear infinite;
 }
-@for $i from 1 through (30){
+@for $i from 1 through (30) {
   $size: random(100) + 50px;
-  .wave:nth-of-type(#{$i}){
+  .wave:nth-of-type(#{$i}) {
     bottom: random(170) + px;
     left: random(100) + vw;
     width: $size;
@@ -156,43 +187,60 @@ html{
     animation-delay: random(3) + s;
   }
 }
-.boat{
+@keyframes boat {
+  0%{
+    transform: translatex(120vw) scale(0.8);
+  }
+  80%,
+  100% {
+    transform: translatex(-25vw) scale(0.8);
+  }
+}
+.boat {
   width: 90px;
   height: 90px;
   bottom: 90px;
   right: 50px;
-  &:after{
+  &:after {
     height: 8px;
     width: 150px;
-    background-image: linear-gradient(90deg, transparentize($x-light, 0.3) 30%, rgba(255, 255, 255, 0) 100%);
+    background-image: linear-gradient(
+      90deg,
+      transparentize($x-light, 0.3) 30%,
+      rgba(255, 255, 255, 0) 100%
+    );
     border-radius: 40%;
     top: 115%;
     left: 20%;
     z-index: -1;
   }
-  &:before{
+  &:before {
     width: 90px;
     height: 50px;
     left: 25px;
     bottom: -70px;
-    background-image: linear-gradient(to bottom, transparentize($x-dark, 0.2) 30%, transparentize($x-dark, 1) 100%);
+    background-image: linear-gradient(
+      to bottom,
+      transparentize($x-dark, 0.2) 30%,
+      transparentize($x-dark, 1) 100%
+    );
     z-index: -1;
   }
-  .base{
+  .base {
     width: 110px;
     height: 25px;
     bottom: -20px;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
     background-color: $dark;
   }
-  .sail:nth-child(1){
+  .sail:nth-child(1) {
     width: 90px;
     height: 80px;
     left: 5px;
     clip-path: polygon(50% 0%, 0% 100%, 50% 100%);
     background: linear-gradient($light 0%, $dark 60%);
   }
-  .sail:nth-child(2){
+  .sail:nth-child(2) {
     width: 80px;
     height: 70px;
     left: 15px;
@@ -202,4 +250,238 @@ html{
     background: linear-gradient($light 0%, $dark 60%);
   }
 }
+.lighthouse-group {
+  width: 50%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+}
+.land {
+  width: 400px;
+  height: 60px;
+  left: -30px;
+  bottom: 0;
+  background-image: linear-gradient(to top, $x-dark 80%, $medium 100%);
+  transform: skew(35deg);
+  border-radius: 10px;
+}
+.lighthouse-holder {
+  height: 480px;
+  width: 100px;
+  bottom: 80px;
+  left: 180px;
+}
+.lighthouse {
+  width: 100%;
+  height: 100%;
+  transform: perspective(600px) rotatex(20deg);
+  /*perspective sets a 3D space 
+    rotatex rotates it on the x-axis on this 3D space 
+    this gives us the tapering effect
+    the top is farther, while the bottom is nearer*/
+  background-color: $x-light;
+  background-image: repeating-linear-gradient(
+    -40deg,
+    transparent,
+    transparent 60px,
+    $dark 60px,
+    $dark 120px
+  );
+  /* to add some shading*/
+  &:after {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background-image: linear-gradient(
+      90deg,
+      transparentize($x-light, 0.4) 0%,
+      $x-dark 8%,
+      transparent 70%,
+      transparentize($x-light, 0.6) 100%
+    );
+  }
+}
+.windows {
+  height: 100%;
+  width: 100%;
+  .window {
+    background-color: $x-dark;
+    height: 25px;
+    width: 15px;
+    left: 43px;
+    border-bottom: 2px solid rgba($light, 0.7);
+    border-radius: 25px 25px 0 0;
+  }
+  $bottom: 90px;
+  @for $i from 1 through (4) {
+    .window:nth-of-type(#{$i}) {
+      bottom: $bottom;
+    }
+    $bottom: $bottom + 90px;
+  }
+}
+.door {
+  background-color: $x-dark;
+  height: 40px;
+  width: 25px;
+  left: 38px;
+  bottom: -2px;
+  border-radius: 2px 2px 0 0;
+  .stairs {
+    width: 27px;
+    height: 28px;
+    background-color: $x-dark;
+    top: 34px;
+    left: -1px;
+    transform: perspective(100px) rotatex(45deg);
+    background-image: repeating-linear-gradient(
+      to bottom,
+      $x-dark,
+      $x-dark 4px,
+      $light,
+      rgba(white, 0.1) 5px
+    );
+  }
+}
+.top {
+  width: 94px;
+  height: 60px;
+  left: 3px;
+  top: -15px;
+  .rail {
+    width: 100%;
+    height: 17px;
+    bottom: 1px;
+    border: 3px solid $x-dark;
+    border-radius: 1px;
+    transform: perspective(1000px) rotatex(-35deg);
+    background-image: repeating-linear-gradient(
+      90deg,
+      $x-dark,
+      $x-dark 3px,
+      $grey 3px,
+      $yellow 10px
+    );
+    background-position: -2px 0;
+  }
+}
+.middle {
+  width: 88px;
+  height: 35px;
+  left: 3px;
+  bottom: 14px;
+  border: 2px solid $x-dark;
+  border-radius: 3px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    $x-dark,
+    $x-dark 4px,
+    $grey 4px,
+    rgba(255, 255, 255, 0) 21px
+  );
+  background-position: -2px 0;
+  &:before {
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: $yellow;
+    box-shadow: 0 0 10px $x-light, 0 0 20px $yellow, 0 0 30px $yellow,
+      0 0 40px $yellow, 0 0 70px $yellow;
+  }
+}
+.roof {
+  width: 0px;
+  height: 0px;
+  left: -3px;
+  bottom: 45px;
+  border-left: 50px solid rgba(255, 255, 255, 0);
+  border-right: 50px solid rgba(255, 255, 255, 0);
+  border-bottom: 40px solid $x-dark;
+  &:before {
+    width: 14px;
+    height: 14px;
+    left: -7px;
+    bottom: -7px;
+    background-color: $x-dark;
+    border-radius: 50%;
+  }
+  &:after {
+    width: 4px;
+    height: 14px;
+    left: -2px;
+    bottom: 5px;
+    background-color: $x-dark;
+    border-radius: 3px;
+  }
+}
+.roof-light {
+  width: 100px;
+  height: 40px;
+  left: -50px;
+  clip-path: polygon(50% 0, 0% 100%, 100% 100%);
+  background-image: linear-gradient(
+    135deg,
+    $x-dark 40%,
+    rgba(yellow, 0.5) 100%
+  );
+}
+@keyframes lightRotate {
+  0%,
+  100% {
+    transform: perspective(500px) rotatey(0deg);
+  }
+  25% {
+    transform: perspective(500px) rotatey(35deg);
+  }
+  75% {
+    transform: perspective(500px) rotatey(-35deg);
+  }
+}
+$lightSpeed: 40s;
+
+.light-container {
+  height: 40px;
+  width: 35vw;
+  bottom: 4px;
+  left: 40px;
+  transform-style: preserve-3d;
+  transform-origin: left bottom;
+  transform: perspective(500px) rotatey(0deg);
+  animation: lightRotate $lightSpeed linear infinite;
+  .light {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transform: perspective(500px) rotatey(-35deg);
+    background: linear-gradient(
+      90deg,
+      $yellow 40%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+@keyframes lightGlow {
+  0%, 50%, 100% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 1;
+  }
+}
+.glow {
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+  background-color: $yellow;
+  opacity: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px $yellow, 0 0 20px $yellow,
+    0 0 30px $yellow, 0 0 40 $yellow,
+    0 0 50px $yellow, 0 0 60 $yellow,
+    0 0 70px $yellow, 0 0 80 $yellow;
+}
+
 
