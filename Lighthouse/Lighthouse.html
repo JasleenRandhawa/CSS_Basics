@@ -6,7 +6,7 @@
     .moon
     .mountains
       - for (var i = 0; i < 4; i++)
-          .mountain 
+        .mountain 
     .sea
       - for(var i = 0; i < 30; i ++)
         .wave
@@ -21,6 +21,15 @@
       .shadow
       .lighthouse
       .top
+        .light-container
+          .light
+        .rail
+        .middle
+        .roof
+          .roof-light
+        .glow
       .windows
+        - for (var i = 0; i < 4; i++)
+          .window
       .door
         .stairs
